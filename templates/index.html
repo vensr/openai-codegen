@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <title>OpenAI Quickstart</title>
+  <style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.1/ace.min.js" integrity="sha512-ng8lqEhJGMKnQpoic2Em0zNRHdGg+2Bic6gNSXRCd50jsDcJwATbN7WJqwLFQDhM9oHlRfGhsPrIC8BXqrnWwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='code.png') }}"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+
+</head>
+
+<body>
+  <div id="codesection">
+    <img src="{{ url_for('static', filename='code.png') }}" class="icon" />
+    <h3>Get My Code</h3>
+    <form action="/" method="post">
+      <input type="text" name="code" placeholder="What code do you want to generate?" required />
+      <input type="submit" value="Generate Code" />
+    </form>
+  </div>
+  <div>
+    {% if result %}
+    <div class="result">{{ result }}</div>
+    <script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/monokai");
+    </script>
+    {% endif %}
+  </div>
+</body>
